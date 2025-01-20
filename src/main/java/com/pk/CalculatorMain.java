@@ -15,11 +15,18 @@ public class CalculatorMain {
                 System.out.println("Exiting the calculator. Good bye!");
                 break;
             }
-            double[] numbers = calculator.getNumber(scanner);
+            double[] numbers = calculator.getNumbersWithValidation(scanner);
             double num1 = numbers[0];
             double num2 = numbers[1];
 
             calculator.performOperations(choice, num1, num2);
+
+            System.out.println("Do you want to perform other calculation ? (yes/no)");
+            String conChoice = scanner.next();
+            if (conChoice.equalsIgnoreCase("no")) {
+                System.out.println("Exiting the calculator, Good bye!");
+                break;
+            }
         }
         scanner.close();
     }

@@ -1,5 +1,6 @@
 package com.pk;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
@@ -18,16 +19,38 @@ public class Calculator {
     }
 
     public int getUserChoice(Scanner scanner) {
-        return scanner.nextInt();
+        int choice = -1;
+        while (choice < 0 || choice > 4) {
+            try {
+                System.out.println("Enter your choice 0 is exit");
+                choice = scanner.nextInt();
+                if (choice < 0 || choice > 4) {
+                    System.out.println("Invalid choice. Please select the valid operation");
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid input. Please enter a number");
+                scanner.next();
+            }
+        }
+        return choice;
     }
 
-    public double[] getNumber(Scanner scanner) {
+    public double[] getNumbersWithValidation(Scanner scanner) {
         double numbers[] = new double[2];
-        System.out.println("Enter the first number : ");
-        numbers[0] = scanner.nextInt();
+        while (true) {
+            try {
 
-        System.out.println("Enter the second number : ");
-        numbers[1] = scanner.nextInt();
+                System.out.println("Enter the first number : ");
+                numbers[0] = scanner.nextInt();
+
+                System.out.println("Enter the second number : ");
+                numbers[1] = scanner.nextInt();
+                break;
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid input, please enter valid input");
+                scanner.next();
+            }
+        }
 
         return numbers;
     }
