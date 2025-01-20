@@ -16,15 +16,19 @@ public class Calculator {
         System.out.println("2. Subtraction");
         System.out.println("3. Multiplication");
         System.out.println("4. Division");
+        System.out.println("5. Modulus");
+        System.out.println("6. Power");
+        System.out.println("7. Square Root");
+        System.out.println("0. Exit");
     }
 
     public int getUserChoice(Scanner scanner) {
         int choice = -1;
-        while (choice < 0 || choice > 4) {
+        while (choice < 0 || choice > 8) {
             try {
                 System.out.println("Enter your choice 0 is exit");
                 choice = scanner.nextInt();
-                if (choice < 0 || choice > 4) {
+                if (choice < 0 || choice > 8) {
                     System.out.println("Invalid choice. Please select the valid operation");
                 }
             } catch (InputMismatchException ex) {
@@ -35,23 +39,35 @@ public class Calculator {
         return choice;
     }
 
-    public double[] getNumbersWithValidation(Scanner scanner) {
+    public double[] getNumbersWithValidation(Scanner scanner, int choice) {
         double numbers[] = new double[2];
-        while (true) {
-            try {
+        if (choice == 7) {
+            while (true) {
+                try {
+                    System.out.println("Enter the number ");
+                    numbers[0] = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException ex) {
+                    System.out.println("Invalid input, please enter valid input");
+                    break;
+                }
+            }
+        } else {
+            while (true) {
+                try {
 
-                System.out.println("Enter the first number : ");
-                numbers[0] = scanner.nextInt();
+                    System.out.println("Enter the first number : ");
+                    numbers[0] = scanner.nextInt();
 
-                System.out.println("Enter the second number : ");
-                numbers[1] = scanner.nextInt();
-                break;
-            } catch (InputMismatchException ex) {
-                System.out.println("Invalid input, please enter valid input");
-                scanner.next();
+                    System.out.println("Enter the second number : ");
+                    numbers[1] = scanner.nextInt();
+                    break;
+                } catch (InputMismatchException ex) {
+                    System.out.println("Invalid input, please enter valid input");
+                    scanner.next();
+                }
             }
         }
-
         return numbers;
     }
 
@@ -68,6 +84,19 @@ public class Calculator {
                 break;
             case 4:
                 System.out.println("The result of division : " + operations.division(num1, num2));
+                break;
+            case 5:
+                try {
+                    System.out.println("The result of modulus : " + operations.modulus(num1, num2));
+                } catch (ArithmeticException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
+            case 6:
+                System.out.println("The result of " + num1 + " raised to the power of " + num2 + " : " + operations.power(num1, num2));
+                break;
+            case 7:
+                System.out.println("The square root of " + num1 + " : " + operations.sqrt(num1));
                 break;
             default:
                 System.out.println("Enter the valid operation choice ");

@@ -15,7 +15,7 @@ public class CalculatorMain {
                 System.out.println("Exiting the calculator. Good bye!");
                 break;
             }
-            double[] numbers = calculator.getNumbersWithValidation(scanner);
+            double[] numbers = calculator.getNumbersWithValidation(scanner,choice);
             double num1 = numbers[0];
             double num2 = numbers[1];
 
