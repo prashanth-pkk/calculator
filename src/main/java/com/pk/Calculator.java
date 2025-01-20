@@ -2,12 +2,28 @@ package com.pk;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Calculator {
-    private Operations operations;
+    private final Operations operations;
+    private Stack<Double> memory;
 
     public Calculator() {
         operations = new Operations();
+        memory = new Stack<>();
+    }
+
+    public void saveResultToMemory(double result){
+        memory.push(result);
+    }
+
+    public double getResultFromMemory(){
+        if(!memory.isEmpty()){
+            return memory.peek();
+        }else {
+            System.out.println("No results in memory");
+            return Double.NaN;
+        }
     }
 
     public void displayMenu() {
