@@ -9,5 +9,7 @@ Division: Divides the first number by the second number (checks for division by 
 Dynamic Operations: Operations are encapsulated in separate strategy classes, making it easy to add new operations in the future.
 
 How to Run
+https://github.com/prashanth-pkk/calculator.git
 
+Run
 java Main
